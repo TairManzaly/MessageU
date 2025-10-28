@@ -3,8 +3,9 @@ import os
 import socket
 import sqlite3
 import selectors
+import struct
 
-PORT =1357
+PORT =1234
 HOST = '0.0.0.0'
 def get_port():
     try:
@@ -37,6 +38,7 @@ def accept(sock):
 def handle(conn, mask):
     data = conn.recv(1024) 
     if data:
+      data
       print("helo")  
     else:
         print('closing', conn)
