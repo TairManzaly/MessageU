@@ -49,20 +49,23 @@ def handle(conn, mask):
 
 def main():
     print("main now")
-    # get_port()
+    get_port()
 
-    
-    sock = socket.socket()
-    sock.bind((HOST,1234))
-    sock.listen()
-    sock.setblocking(False)
-    sel.register(sock, selectors.EVENT_READ, accept)
-    while True:
-        events = sel.select()
-        for key, mask in events:
-            callback = key.data
-            callback(key.fileobj)
-        
+    try:
+        sock = socket.socket()
+        sock.bind((HOST,PORT))
+        sock.listen()
+        sock.setblocking(False)
+        sel.register(sock, selectors.EVENT_READ, accept)
+        while True:
+            events = sel.select()
+            for key, mask in events:
+                callback = key.data
+                callback(key.fileobj)
+    except Exception as e:
+        print(e)
+    except KeyboardInterrupt:
+        print("bye")
 
 if __name__ == "__main__":
     print("starting")

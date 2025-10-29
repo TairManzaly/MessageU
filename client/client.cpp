@@ -6,17 +6,39 @@ using boost::asio::ip::tcp;
 
 
 
-// int Register(){
+int Register(){
     
-// //header: client ID 16 Version 1 Cose 2 Payload syze 4 
-// // payload: Name - 255 byts Public key: 160 byts
-//     uint clientID;
-//     uint8_t version = 1;
-//     uint1
-// }
+//header: client ID 16 Version 1 Cose 2 Payload syze 4 
+// payload: Name - 255 byts Public key: 160 byts
+    // uint clientID;
+    // uint8_t version = 1;
+    // uint1
+}
 
+int clientList(){
+    uint16_t code = htons(120);
+    uint32_t payload_size = htonl(0);
 
-int menu(){
+}
+
+int publicKey(){
+
+}
+
+int waitingMessage(){
+
+}
+int textMessage(){
+
+}
+int symetricKeyRequest(){
+
+}
+int Exit(){
+
+}
+
+int userMenu(){
     cout<<" MessageU client at your service.\n";
     cout << "110) Register\n";
     cout << "120) Request for clients list\n";
@@ -27,7 +49,9 @@ int menu(){
     cout << "152) Send your symemetric key\n";
     cout << "0) Exit client\n";
     cout << "?";
-    return 0;
+    string choice;
+    cin>> choice;
+    return stoi(choice);
     
 
 }
@@ -79,11 +103,11 @@ char request[max_length];
 
 while (true)
 {
-    menu();
-    std::cin.getline(request,max_length);
-    boost::asio::write(s,boost::asio::buffer(request,max_length));
-    int choice;
-    cin>> choice;
+    int choice = userMenu();
+    cout<< "you chose";
+    // std::cin.getline(request,max_length);
+    // boost::asio::write(s,boost::asio::buffer(request,max_length));
+    
     requestChoice(choice);
 }}
 catch(const std::exception& e)
